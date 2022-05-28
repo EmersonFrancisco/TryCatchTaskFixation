@@ -52,14 +52,17 @@ public class Account {
 	}
 
 	public void withdraw(Double amount) throws DomainExceptions {
+		validateWithdraw(amount);
+		balance -= amount;
+	}
+	
+	public void validateWithdraw(Double amount) throws DomainExceptions {
 		if (amount > withdrawLimit) {
 			throw new DomainExceptions("The amount exceeds withdraw limit");
 		}
 		if (amount > balance) {
 			throw new DomainExceptions("Not enough balance");
 		}
-
-		balance -= amount;
 	}
 
 }
